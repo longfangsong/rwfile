@@ -3,6 +3,8 @@ name = "rwfile"
 version = "0.1.0"
 authors = ["longfangsong <longfangsong@icloud.com>"]
 edition = "2018"
+description = "A crate which provides Sync multiple reader single writer for a file"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

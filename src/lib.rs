@@ -1,11 +1,11 @@
 #![deny(missing_docs)]
 
-//! A crate which provides multiple reader single writer for a file
+//! A crate which provides Sync multiple reader single writer for a file
+use std::{io, thread};
 use std::fs::{File, OpenOptions};
 use std::io::{Read, Seek, SeekFrom};
 use std::path::{Path, PathBuf};
 use std::sync::Mutex;
-use std::{io, thread};
 
 /// Read Guard for a file
 /// Each read guard has its own file descriptor
@@ -124,12 +124,14 @@ unsafe impl Sync for RWFile {}
 
 #[cfg(test)]
 mod tests {
-    use crate::RWFile;
-    use rand::Rng;
     use std::io::{Read, Seek, SeekFrom, Write};
     use std::sync::Arc;
     use std::thread;
+
+    use rand::Rng;
     use tempfile::NamedTempFile;
+
+    use crate::RWFile;
 
     #[test]
     fn it_works() {
